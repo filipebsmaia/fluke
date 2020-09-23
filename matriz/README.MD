@@ -22,3 +22,10 @@ import findUniqueNumberInArray from "./index.ts";
 console.log("Matriz 1: ", findUniqueNumberInArray([1, 1, 2, 3, 2])); // Log 3
 console.log("Matriz 2: ", findUniqueNumberInArray([1, 1, 3, 3, 2])); // Log 2
 ```
+
+Ou testar diretamente no arquivo adicionando as seguintes linha no final
+
+```js
+console.log("Matriz 1: ", findUniqueNumberInArray([1, 1, 2, 3, 2])); // Log 3
+console.log("Matriz 2: ", findUniqueNumberInArray([1, 1, 3, 3, 2])); // Log 2
+```
