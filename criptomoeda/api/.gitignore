@@ -1,0 +1,5 @@
+/node_modules/
+.env
+firebaseConfig.json
+
+yarn.lock
