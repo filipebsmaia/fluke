@@ -66,7 +66,7 @@ class ListCryptoCurrencyPriceHistoryService {
       save({
         key: `cryptocurrency:history:${symbol.toUpperCase()}`,
         value: history,
-        expires: 60 * 30,
+        expires: 5,
       });
     }
 

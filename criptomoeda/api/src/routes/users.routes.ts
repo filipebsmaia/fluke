@@ -9,6 +9,6 @@ const routes = Router();
 
 routes.put("/", userController.create);
 
-routes.put("/sessions", sessionsController.create);
+routes.post("/sessions", sessionsController.create);
 
 export default routes;

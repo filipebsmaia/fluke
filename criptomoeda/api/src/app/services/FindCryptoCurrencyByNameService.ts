@@ -1,9 +1,9 @@
 import api from "services/api";
 import { save, recover } from "../providers/CacheProvider";
 
-type IRequest = {
+interface IRequest {
   name: string;
-};
+}
 
 type IResponse = Array<{
   name: string;
