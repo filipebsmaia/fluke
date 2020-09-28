@@ -40,8 +40,8 @@ const AuthProvider: React.FC = ({children}) => {
   useEffect(() => {
     async function loadStorageData(): Promise<void> {
       const [token, user] = await AsyncStorage.multiGet([
-        '@DesafioFluke:token',
-        '@DesafioFluke:user',
+        '@CryptoCurrency:token',
+        '@CryptoCurrency:user',
       ]);
 
       if (token[1] && user[1]) {
@@ -63,8 +63,8 @@ const AuthProvider: React.FC = ({children}) => {
     const {token, user} = response.data;
 
     await AsyncStorage.multiSet([
-      ['@DesafioFluke:token', token],
-      ['@DesafioFluke:user', JSON.stringify(user)],
+      ['@CryptoCurrency:token', token],
+      ['@CryptoCurrency:user', JSON.stringify(user)],
     ]);
 
     api.defaults.headers.authorization = `Bearer ${token}`;
@@ -74,8 +74,8 @@ const AuthProvider: React.FC = ({children}) => {
 
   const singOut = useCallback(async () => {
     await AsyncStorage.multiRemove([
-      '@DesafioFluke:token',
-      '@DesafioFluke:user',
+      '@CryptoCurrency:token',
+      '@CryptoCurrency:user',
     ]);
 
     setData({} as AuthState);
