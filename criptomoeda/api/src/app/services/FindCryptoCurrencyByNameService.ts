@@ -76,16 +76,21 @@ class FindCoinsByNameService {
       coin.FullName.toLowerCase().includes(name.toLowerCase())
     );
 
-    const symbolsToQueryParams = filteredCoins
+    let symbolsToQueryParams = filteredCoins
       .map((coin) => coin.Symbol)
       .join(",");
+
+    if (symbolsToQueryParams.length > 1000) {
+      symbolsToQueryParams = symbolsToQueryParams
+        .slice(0, 999)
+        .slice(0, symbolsToQueryParams.lastIndexOf(",")); // limit of the crypto api
+    }
 
     const {
       data: { RAW: pricingData },
     } = await api.get<ICoinPricingInfoRequest>(
       `pricemultifull?tsyms=BRL&fsyms=${symbolsToQueryParams}`
     );
-    console.log(symbolsToQueryParams);
 
     const coins = Object.entries(pricingData).map(([symbol, coin]) => {
       const rawCoinInfo = coin.BRL;

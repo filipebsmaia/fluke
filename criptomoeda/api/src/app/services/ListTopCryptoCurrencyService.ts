@@ -51,8 +51,8 @@ class ListTopCryptoCurrencyService {
       const raw = coin.RAW.BRL;
       return {
         id: info.Id,
-        name: info.Name,
-        fullname: info.FullName,
+        name: info.FullName,
+        symbol: info.Name,
         image: `https://www.cryptocompare.com/${info.ImageUrl}`,
         rating: {
           rating: info.Rating.Weiss.Rating,
