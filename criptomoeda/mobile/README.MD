@@ -24,7 +24,7 @@
 ## 📖 Sobre
 
 <p>
-  Essa aplicação foi desenvolvida durate teste da fluke.
+  Essa aplicação foi desenvolvida durante o teste da fluke.
 </p>
 <p>
   O objetivo foi criar uma aplicação onde fosse possivel listar a "top" criptomoedas, visualizar informação da moeda, como historico e um sistema de login simples.
