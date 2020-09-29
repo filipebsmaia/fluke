@@ -3,14 +3,21 @@ import {FlatList} from 'react-native';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import {TopCurrencyProps, SearchCurrencyProps} from './index';
 import Button from '../../components/Button';
+import {RectButton} from 'react-native-gesture-handler';
 
 export const Header = styled.View`
   margin: 24px;
   margin-top: ${getStatusBarHeight() + 24}px;
   margin-bottom: 0px;
-  justify-content: space-between;
-  align-items: flex-start;
 `;
+
+export const HeaderContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const LogoutButton = styled(RectButton)``;
 
 export const Title = styled.Text`
   color: #161616;

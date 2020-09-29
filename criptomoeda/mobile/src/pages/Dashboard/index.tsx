@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {Alert} from 'react-native';
+import {ActivityIndicator, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Feather';
 
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
@@ -16,10 +17,13 @@ import Modal from '../../components/Modal';
 import {
   TopCoinList,
   Header,
+  HeaderContainer,
   HeaderSearchContainer,
+  LogoutButton,
   Title,
   SearchedCoinList,
 } from './styles';
+import {useAuth} from '../../hooks/auth';
 
 export interface TopCurrencyProps {
   id: string;
@@ -66,8 +70,10 @@ const Dashboard: React.FC = () => {
   >([]);
 
   const {navigate} = useNavigation();
+  const {singOut} = useAuth();
 
   useEffect(() => {
+    setLoading(true);
     api.get<TopCurrencyProps[]>('cryptocurrency/top').then((response) => {
       setTopCurrency(
         response.data.map((currency) => {
@@ -84,6 +90,7 @@ const Dashboard: React.FC = () => {
           };
         }),
       );
+      setLoading(false);
     });
   }, []);
 
@@ -124,7 +131,6 @@ const Dashboard: React.FC = () => {
             }),
           );
         });
-      setLoading(false);
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
@@ -136,6 +142,7 @@ const Dashboard: React.FC = () => {
         'Ocorreu um erro ao fazer sua solicitação, tente novamente.',
       );
     }
+    setLoading(false);
   }, []);
 
   const navigateToCurrencyInfo = useCallback(
@@ -148,7 +155,12 @@ const Dashboard: React.FC = () => {
   return (
     <>
       <Header>
-        <Title>Dashboard</Title>
+        <HeaderContainer>
+          <Title>Dashboard</Title>
+          <LogoutButton onPress={singOut}>
+            <Icon name="power" size={28} color="#161616" />
+          </LogoutButton>
+        </HeaderContainer>
         <HeaderSearchContainer>
           <Form ref={formRef} onSubmit={handleSearchCoin}>
             <Input
@@ -161,18 +173,22 @@ const Dashboard: React.FC = () => {
           </Form>
         </HeaderSearchContainer>
       </Header>
-      <TopCoinList
-        data={topCurrency}
-        keyExtractor={(currency) => currency.id}
-        ListHeaderComponent={<Title>TopList</Title>}
-        showsVerticalScrollIndicator={false}
-        renderItem={({item: coin}) => (
-          <Coin
-            coinData={coin}
-            onPress={() => navigateToCurrencyInfo(coin.symbol, coin.name)}
-          />
-        )}
-      />
+      {loading ? (
+        <ActivityIndicator size="large" color="#00C3FF"></ActivityIndicator>
+      ) : (
+        <TopCoinList
+          data={topCurrency}
+          keyExtractor={(currency) => currency.id}
+          ListHeaderComponent={<Title>TopList</Title>}
+          showsVerticalScrollIndicator={false}
+          renderItem={({item: coin}) => (
+            <Coin
+              coinData={coin}
+              onPress={() => navigateToCurrencyInfo(coin.symbol, coin.name)}
+            />
+          )}
+        />
+      )}
       {searchModalOppened && (
         <Modal
           title="Resultado da pequisa"
