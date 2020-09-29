@@ -7,7 +7,7 @@ const sessionsController = new SessionsController();
 
 const routes = Router();
 
-routes.put("/", userController.create);
+routes.post("/", userController.create);
 
 routes.post("/sessions", sessionsController.create);
 
