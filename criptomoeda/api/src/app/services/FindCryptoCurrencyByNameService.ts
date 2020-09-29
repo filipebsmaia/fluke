@@ -1,3 +1,4 @@
+import AppError from "@app/errors/AppError";
 import api from "services/api";
 import { save, recover } from "../providers/CacheProvider";
 
@@ -91,6 +92,10 @@ class FindCoinsByNameService {
     } = await api.get<ICoinPricingInfoRequest>(
       `pricemultifull?tsyms=BRL&fsyms=${symbolsToQueryParams}`
     );
+
+    if (!pricingData) {
+      throw new AppError("Invalid coin with thats name");
+    }
 
     const coins = Object.entries(pricingData).map(([symbol, coin]) => {
       const rawCoinInfo = coin.BRL;
