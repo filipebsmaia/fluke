@@ -1,5 +1,4 @@
-import api from "services/api";
-import { save, recover } from "../providers/CacheProvider";
+import api from "../../services/api";
 
 type IResponse = {};
 

@@ -1,5 +1,5 @@
 import AppError from "@app/errors/AppError";
-import api from "services/api";
+import api from "../../services/api";
 import { save, recover } from "../providers/CacheProvider";
 
 interface IRequest {
