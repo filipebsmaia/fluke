@@ -24,12 +24,7 @@ import {
 import Input from '../../components/Input';
 import logoImage from '../../assets/logo.png';
 
-import {
-  Container,
-  Title,
-  CreateAccountButton,
-  CreateAccountButtonText,
-} from './styles';
+import {Container, Title, SignInButton, SignInButtonText} from './styles';
 
 import Button from '../../components/Button';
 
@@ -129,10 +124,10 @@ const SignIn: React.FC = () => {
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
-      <CreateAccountButton onPress={() => navigation.navigate('SingUp')}>
+      <SignInButton onPress={() => navigation.navigate('SignUp')}>
         <Icon name="log-in" size={20} color="#161616" />
-        <CreateAccountButtonText>Criar uma conta</CreateAccountButtonText>
-      </CreateAccountButton>
+        <SignInButtonText>Criar uma conta</SignInButtonText>
+      </SignInButton>
     </>
   );
 };

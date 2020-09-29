@@ -15,12 +15,7 @@ export const Title = styled.Text`
   margin: 64px 0 24px;
 `;
 
-export const CreateAccountButton = styled.TouchableOpacity`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-
+export const SignInButton = styled.TouchableOpacity`
   border-top-width: 1px;
   border-color: #888380;
   padding: 16px 0 ${16 + getBottomSpace()}px;
@@ -30,7 +25,7 @@ export const CreateAccountButton = styled.TouchableOpacity`
   flex-direction: row;
 `;
 
-export const CreateAccountButtonText = styled.Text`
+export const SignInButtonText = styled.Text`
   color: #161616;
   font-size: 18px;
   margin-left: 16px;
